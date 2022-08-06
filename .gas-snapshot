@@ -1,0 +1,8 @@
+SimpleStoreHuffTest:testCreationHuff() (gas: 2407432)
+SimpleStoreHuffTest:testStorageAndReadHuff() (gas: 28099)
+SimpleStorageSolidityTest:testCreationSol() (gas: 66813)
+SimpleStorageSolidityTest:testStorageAndReadSol() (gas: 28152)
+SimpleStorageVyperTest:testCreationVy() (gas: 66540)
+SimpleStorageVyperTest:testStorageAndReadVy() (gas: 28057)
+SimpleStorageYulTest:testCreationYul() (gas: 70057)
+SimpleStorageYulTest:testStorageAndReadYul() (gas: 28204)
