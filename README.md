@@ -14,6 +14,9 @@ The purpose of this repo is to compare the following languages for performance (
 - [Table Of Contents](#table-of-contents)
 - [Working with this repo](#working-with-this-repo)
   - [Requirements](#requirements)
+  - [Getting Started](#getting-started)
+- [Contract Creation Gas Costs](#contract-creation-gas-costs)
+  - [Yul](#yul)
 
 # Working with this repo
 
@@ -34,15 +37,31 @@ The purpose of this repo is to compare the following languages for performance (
     -   `solc, the solidity compiler commandline interface Version: 0.8.7+commit.e28d00a7.Darwin.appleclang`
 
 
-Then, you'll need to install forge dependencies:
-
-```
-forge install 
-
-
 ## Getting Started
 
-# Yul
+1. Clone the repo
+
+```
+git clone https://github.com/PatrickAlphaC/sc-language-comparison
+cd sc-language-comparison
+make
+```
+
+2. Run tests
+
+```
+forge snapshot
+```
+
+You'll see the gas outputs in `.gas-snapshot`. This is a good outlook on gas costs on function calls, but not on contract creation. 
+
+# Contract Creation Gas Costs
+
+To test how much gas it costs to deploy a contract, we need to compile the contracts, get their bytecode, and deploy it in a raw transaction. 
+
+This section is TODO:
+
+## Yul
 
 To compile raw yul:
 
