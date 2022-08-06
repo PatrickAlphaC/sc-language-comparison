@@ -57,9 +57,6 @@ We also have some raw yul examples, but it's not the focus of this repo.
 -   [Solidity Compiler](https://docs.soliditylang.org/en/latest/installing-solidity.html)
     -   You'll know you've done it right if you can run `solc --verison` and get an output like:
     -   `solc, the solidity compiler commandline interface Version: 0.8.15+commit.e14f2714.Darwin.appleclan`
--   [Python]
-    -   You'll know you've done it right if you can run `python --verison` or `python3 --version` and get an output like: 
-    -   `Python 3.9.5`
 
 
 ## Getting Started
@@ -86,6 +83,9 @@ To test how much gas it costs to deploy a contract, we need to compile the contr
 
 ## Requirements
 
+- [Python](https://www.python.org/downloads/)
+    -   You'll know you've done it right if you can run `python --verison` or `python3 --version` and get an output like: 
+    -   `Python 3.9.5`
 - [web3py](https://web3py.readthedocs.io/en/stable/)
 
 Setup a new venv:
