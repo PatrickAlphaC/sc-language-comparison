@@ -13,15 +13,15 @@ We also have some raw yul examples, but it's not the focus of this repo.
 
 <br/>
 <p align="center">
-<img src="./img/simple-storage-contract-creation.png" width="500" alt="Simple Storage - Gas Creation">
-<img src="./img/simple-storage-read-write.png" width="500" alt="Simple Storage - Gas Creation">
+<img src="./img/simple-storage-contract-creation-2.png" width="500" alt="Simple Storage - Gas Creation">
+<img src="./img/simple-storage-read-write-2.png" width="500" alt="Simple Storage - Gas Creation">
 </p>
 <br/>
 
 
 |    Language    |   Contract    | Gas Cost Creation | Gas Cost Store & Read Number |
 |:--------------:|:-------------:|:-----------------:|------------------------------|
-|     Huff ♘     | SimpleStorage |       63240       | 28099                        |
+|     Huff ♘     | SimpleStorage |       63444       | 27980                        |
 |     Yul 🔡     | SimpleStorage |       66578       | No - Data                    |
 |    Vyper 🐍    | SimpleStorage |       75722       | 28057                        |
 |     Sol 🐉     | SimpleStorage |       90551       | 28152                        |
@@ -39,6 +39,7 @@ We also have some raw yul examples, but it's not the focus of this repo.
 - [Contract Creation Gas Costs](#contract-creation-gas-costs)
   - [Requirements](#requirements-1)
   - [Getting contract creation gas](#getting-contract-creation-gas)
+- [Why is vyper calling functions cheaper than huff?](#why-is-vyper-calling-functions-cheaper-than-huff)
 
 # Working with this repo
 
@@ -114,9 +115,12 @@ To get the raw bytecode of each contract:
 vyper src/vyper/VSimpleStorage.vy > bytecodes/vy/VSimpleStorage
 huffc src/huff/HSimpleStorage.huff -b > bytecodes/huff/HSimpleStorage
 solc --strict-assembly --optimize --optimize-runs 20000 yul/YYSimpleStorage.yul --bin | grep 60 > bytecodes/yul/YYSimpleStorage 
-solc --optimize --optimize-runs 20000 src/yulsol/YSimpleStorage.sol --bin | grep 60 > bytecodes/sol/YSimpleStorage 
-solc --optimize --optimize-runs 20000 src/solidity/SSimpleStorage.sol --bin | grep 60 > bytecodes/yul/SSimpleStorage 
+solc --optimize --optimize-runs 20000 src/yulsol/YSimpleStorage.sol --bin | grep 60 > bytecodes/yul/YSimpleStorage 
+solc --optimize --optimize-runs 20000 src/solidity/SSimpleStorage.sol --bin | grep 60 > bytecodes/sol/SSimpleStorage 
 ```
+
+> Note: When we compile solidity, it adds a bunch of metadata that we don't need to the end of the binary, even when you add a `--metadata-hash none` flag! [There is currently an issue](https://github.com/ethereum/solidity/issues/13233) to add this feature.
+> We added a `SSimpleStorageNoMetadata` file to the bytecodes folder, and saved about 812 gas doing so. Verification on this contract though fails. 
 
 2. Start local node
 
@@ -134,8 +138,10 @@ And you'll get an output like so:
 
 ```
 63240 gas for Language.HUFF
-75722 gas for Language.VY
-90551 gas for Language.SOL
+76142 gas for Language.VY
+90539 gas for Language.SOL
 93987 gas for Language.YUL
 66578 gas for Language.YYL
 ```
+
+# Why is vyper calling functions cheaper than huff? 
