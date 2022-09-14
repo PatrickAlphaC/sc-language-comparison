@@ -11,7 +11,6 @@ object "YYSimpleStorage" {
             // cast sig "storeNumber(uint256)"
             case 0xb6339418 {
                 storeNumber(decodeAsUint(0))
-                returnTrue()
             }
             // cast sig "readNumber()"
             case 0xb63d343f{
@@ -45,10 +44,6 @@ object "YYSimpleStorage" {
             function returnUint(v) {
                 mstore(0, v)
                 return(0, 0x20)
-            }
-
-            function returnTrue() {
-                returnUint(1)
             }
         }
      }

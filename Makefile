@@ -1,6 +1,6 @@
 -include .env
 
-.PHONY: all test clean
+.PHONY: all test clean anvil
 
 all: clean remove install update build
 

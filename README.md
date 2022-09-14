@@ -39,7 +39,6 @@ We also have some raw yul examples, but it's not the focus of this repo.
 - [Contract Creation Gas Costs](#contract-creation-gas-costs)
   - [Requirements](#requirements-1)
   - [Getting contract creation gas](#getting-contract-creation-gas)
-- [Why is vyper calling functions cheaper than huff?](#why-is-vyper-calling-functions-cheaper-than-huff)
 
 # Working with this repo
 
@@ -141,7 +140,27 @@ And you'll get an output like so:
 76142 gas for Language.VY
 90539 gas for Language.SOL
 93987 gas for Language.YUL
-66578 gas for Language.YYL
+65054 gas for Language.YYL
 ```
 
-# Why is vyper calling functions cheaper than huff? 
+If you'd like to store a number on a contract, you can run something like:
+
+```
+cast send 0x8A791620dd6260079BF849Dc5567aDC3F2FdC318 "storeNumber(uint256)" 77 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+```
+
+```
+cast send CONTRACT_ADDRESS FUNCTION_SIGNATURE ARGS --private-key YOUR_KEY
+```
+
+> Private Key `0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80` is the private key of account `0` for the anvil chain.
+
+And then read the number:
+
+```
+cast call 0x8A791620dd6260079BF849Dc5567aDC3F2FdC318 "readNumber()" 
+```
+
+```
+cast call CONTRACT_ADDRESS FUNCTION_SIGNATURE ARGS
+```
